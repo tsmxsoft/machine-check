@@ -13,5 +13,5 @@ $ chmod +x ./machine_check
 E logo após definir as permissões necessárias, realizar a execução do step de validação:
 
 ```bash
-$ sh ./machine_check
+$ ./machine_check
 ```
