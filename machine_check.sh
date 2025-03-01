@@ -2,6 +2,8 @@
 apt install sudo -y
 apt install hdparm -y
 apt install curl -y
+apt install htop -y
+apt install vim -y
 
 print_separator() {
   printf -- "========================================\n"
