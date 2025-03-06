@@ -39,16 +39,16 @@ SWAP_SIZE=$(free -g | awk '/Swap:/ {print $2}')
 SWAP_MINIMAL=16
 
 if [ "$SWAP_SIZE" -lt "$SWAP_MINIMAL" ]; then
-    echo -e "${CYAN}Ajustando memória swap para ${DESIRED_SWAP}GB...${NC}"
+    echo -e "${CYAN}Ajustando memória swap para ${SWAP_MINIMAL}GB...${NC}"
     
     sudo swapoff -a
-    sudo fallocate -l ${DESIRED_SWAP}G /swapfile
+    sudo fallocate -l ${SWAP_MINIMAL}G /swapfile
     sudo chmod 0600 /swapfile
     sudo mkswap /swapfile
     sudo swapon /swapfile
     echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
     
-    echo -e "${CYAN}Swap ajustado para ${DESIRED_SWAP}GB.${NC}"
+    echo -e "${CYAN}Swap ajustado para ${SWAP_MINIMAL}GB.${NC}"
 else
     echo -e "${CYAN}Swap atual é de ${SWAP_SIZE}GB, não é necessário ajuste.${NC}"
 fi
