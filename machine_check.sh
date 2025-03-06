@@ -35,6 +35,16 @@ echo -e "${CYAN}Unidades de armazenamento:${NC}"
 df -h
 print_separator
 
+echo -e "${CYAN}Ajustando memória swap...${NC}"
+sudo swapoff -a
+sudo fallocate -l 16G /swapfile
+sudo chmod 0600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+print_separator
+
 echo -e "${CYAN}Teste de velocidade de leitura:${NC}"
 sudo hdparm -Tt /dev/sda1
 print_separator
