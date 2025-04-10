@@ -37,6 +37,20 @@ print_separator
 
 SWAP_SIZE=$(free -g | awk '/Swap:/ {print ($2+0)}')
 
+echo -e "${CYAN}Presença de interface gráfica...${NC}"
+if command -v gnome-shell >/dev/null || \
+   command -v startkde >/dev/null || \
+   command -v xfce4-session >/dev/null || \
+   command -v mate-session >/dev/null; then
+    echo "${YELLOW}Ambiente gráfico está instalado."
+elif pgrep -x "Xorg" >/dev/null || pgrep -x "wayland" >/dev/null; then
+    echo "${YELLOW}Servidor gráfico em execução."
+elif [ -n "$DISPLAY" ]; then
+    echo "${YELLOW}Sessão com interface gráfica detectada."
+else
+    echo "${GREEN}Nenhuma interface gráfica detectada."
+fi
+
 if [ "$SWAP_SIZE" -lt 16 ]; then
     echo -e "${CYAN}Ajustando memória swap para 16GB...${NC}"
     
