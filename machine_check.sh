@@ -42,13 +42,13 @@ if command -v gnome-shell >/dev/null || \
    command -v startkde >/dev/null || \
    command -v xfce4-session >/dev/null || \
    command -v mate-session >/dev/null; then
-    echo "${YELLOW}Ambiente gráfico está instalado.${NC}"
+    echo -e "${YELLOW}Ambiente gráfico está instalado${NC}"
 elif pgrep -x "Xorg" >/dev/null || pgrep -x "wayland" >/dev/null; then
-    echo -e "${YELLOW}Servidor gráfico em execução.${NC}"
+    echo -e "${YELLOW}Servidor gráfico em execução${NC}"
 elif [ -n "$DISPLAY" ]; then
-    echo -e "${YELLOW}Sessão com interface gráfica detectada.${NC}"
+    echo -e "${YELLOW}Sessão com interface gráfica detectada${NC}"
 else
-    echo -e "${GREEN}Nenhuma interface gráfica detectada.${NC}"
+    echo -e "${GREEN}Nenhuma interface gráfica detectada${NC}"
 fi
 
 if [ "$SWAP_SIZE" -lt 16 ]; then
