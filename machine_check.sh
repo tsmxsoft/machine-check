@@ -44,11 +44,11 @@ if command -v gnome-shell >/dev/null || \
    command -v mate-session >/dev/null; then
     echo "${YELLOW}Ambiente gráfico está instalado."
 elif pgrep -x "Xorg" >/dev/null || pgrep -x "wayland" >/dev/null; then
-    echo "${YELLOW}Servidor gráfico em execução."
+    echo -e "${YELLOW}Servidor gráfico em execução."
 elif [ -n "$DISPLAY" ]; then
-    echo "${YELLOW}Sessão com interface gráfica detectada."
+    echo -e "${YELLOW}Sessão com interface gráfica detectada."
 else
-    echo "${GREEN}Nenhuma interface gráfica detectada."
+    echo -e "${GREEN}Nenhuma interface gráfica detectada."
 fi
 
 if [ "$SWAP_SIZE" -lt 16 ]; then
