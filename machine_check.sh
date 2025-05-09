@@ -51,6 +51,8 @@ else
     echo -e "Nenhuma interface gráfica detectada"
 fi
 
+print_separator
+
 if [ "$SWAP_SIZE" -lt 16 ]; then
     echo -e "${CYAN}Ajustando memória swap para 16GB...${NC}"
     
