@@ -12,11 +12,17 @@ print_separator() {
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' 
+NC='\033[0m'
+
+ARQUITETURA=uname -r 
 
 echo -e "${CYAN}Distribuição e versão do Linux instalado:${NC}"
 cat /etc/os-release | grep NAME=
 cat /etc/os-release | grep VERSION=
+print_separator
+
+echo -e "${CYAN}Arquitetura do sistema:${NC}"
+uname -r
 print_separator
 
 storage_type=$(cat /sys/block/sda/queue/rotational)
