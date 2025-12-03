@@ -4,6 +4,7 @@ apt install hdparm -y
 apt install curl -y
 apt install htop -y
 apt install vim -y
+apt install git -y
 
 print_separator() {
   printf -- "========================================\n"
