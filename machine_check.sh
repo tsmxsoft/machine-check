@@ -62,6 +62,22 @@ fi
 
 print_separator
 
+echo -e "${CYAN}Validação do Linux${NC}"
+
+if tr '\0' '\n' < /proc/1/environ 2>/dev/null | grep -qiE '^container=(lxc|lxd)'; then
+    echo "${YELLOW}Sistema está rodando dentro de um container LXC/LXD${NC}"
+else
+    echo "${GREEN}Sistema não está rodando dentro de um container LXC/LXD${NC}"
+fi
+
+if [ -f /.dockerenv ] || [ -f /run/.containerenv ]; then
+    echo "${YELLOW}Sistema está rodando dentro de um Container ou Docker${NC}"
+else
+    echo "${GREEN}Sistema não está rodando dentro de um Container ou Docker${NC}"
+fi
+
+print_separator
+
 if [ "$SWAP_SIZE" -lt 16 ]; then
     echo -e "${CYAN}Ajustando memória swap para 16GB...${NC}"
     
