@@ -65,15 +65,15 @@ print_separator
 echo -e "${CYAN}Validação do Linux${NC}"
 
 if tr '\0' '\n' < /proc/1/environ 2>/dev/null | grep -qiE '^container=(lxc|lxd)'; then
-    echo "${YELLOW}Sistema está rodando dentro de um container LXC/LXD${NC}"
+    echo -e "${YELLOW}Sistema está rodando dentro de um container LXC/LXD${NC}"
 else
-    echo "${GREEN}Sistema não está rodando dentro de um container LXC/LXD${NC}"
+    echo -e "${GREEN}Sistema não está rodando dentro de um container LXC/LXD${NC}"
 fi
 
 if [ -f /.dockerenv ] || [ -f /run/.containerenv ]; then
-    echo "${YELLOW}Sistema está rodando dentro de um Container ou Docker${NC}"
+    echo -e "${YELLOW}Sistema está rodando dentro de um Container ou Docker${NC}"
 else
-    echo "${GREEN}Sistema não está rodando dentro de um Container ou Docker${NC}"
+    echo -e "${GREEN}Sistema não está rodando dentro de um Container ou Docker${NC}"
 fi
 
 print_separator
