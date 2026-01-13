@@ -82,11 +82,19 @@ if [ "$SWAP_SIZE" -lt 16 ]; then
     echo -e "${CYAN}Ajustando memória swap para 16GB...${NC}"
     
     sudo swapoff -a
+
+    if [ -f /swapfile ]; then
+        sudo rm -f /swapfile
+    fi
+
     sudo fallocate -l 16G /swapfile
     sudo chmod 0600 /swapfile
     sudo mkswap /swapfile
     sudo swapon /swapfile
-    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+    
+    if ! grep -qE '^\s*/swapfile\s+none\s+swap\s' /etc/fstab; then
+        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab >/dev/null
+    fi
     
     echo -e "${CYAN}Swap ajustado para 16GB.${NC}"
 else
