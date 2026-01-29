@@ -44,6 +44,20 @@ echo -e "${CYAN}Unidades de armazenamento:${NC}"
 df -h
 print_separator
 
+echo -e "${CYAN}Tipo de virtualização:${NC}"
+systemd-detect-virt
+print_separator
+
+echo -e "${CYAN}Informações da memória RAM:${NC}"
+sudo dmidecode -t memory | awk '
+/^Physical Memory Array/ {print; pma=1; next}
+/^Memory Device/ {print ""; print; md=1; next}
+pma && /^\t(Location|Use|Error Correction Type|Maximum Capacity)/ {print}
+md && /^\t(Array Handle|Error Information Handle|Total Width|Data Width|Size|Form Factor|Set|Locator|Bank Locator|Type)/ {print}
+/^\s*$/ {pma=0; md=0}
+'
+print_separator
+
 SWAP_SIZE=$(free -g | awk '/Swap:/ {print ($2+0)}')
 
 echo -e "${CYAN}Presença de interface gráfica...${NC}"
