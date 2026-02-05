@@ -25,6 +25,7 @@ cat /etc/os-release | grep VERSION=
 print_separator
 
 echo -e "${CYAN}Arquitetura do sistema:${NC}"
+uname
 uname -r
 print_separator
 
